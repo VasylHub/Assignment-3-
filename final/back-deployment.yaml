@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+  labels:
+    app: api   
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - image: vasyldocker/quotes-back:v1.1
+        name: api
+        envFrom:
+        - secretRef:
+            name: back-secret
+        ports:
+        - containerPort: 3000
+      restartPolicy: Always
+
