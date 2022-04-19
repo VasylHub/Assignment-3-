@@ -1,17 +1,15 @@
 
 
 run:
-	kubectl apply -f ./run1 --all
+	kubectl apply -f ./all-services/
+	kubectl apply -f ./storage-class/
 
 fill-db:
-	kubectl apply -f ./run2 --all
+	kubectl apply -f ./data-script
 
 stop:
-	kubectl delete deploy back data front
-	kubectl delete pod data-script-pod
-	kubectl delete secret data-secret back-secret data-script-secret
-	kubectl delete service back data front
+	kubectl delete -f ./all-services/
 
 clean:
-	kubectl delete pvc claim
-	kubectl delete sc sc  
+	kubectl delete -f ./storage-class/
+	
