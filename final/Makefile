@@ -9,7 +9,8 @@ fill-db:
 
 stop:
 	kubectl delete -f ./all-services/
+	kubectl delete -f ./data-script
 
-clean:
+clean: stop
 	kubectl delete -f ./storage-class/
 	
