@@ -33,8 +33,10 @@ spec:
       ])
       container('jenkins-slave') {
         sh '''
-        cd ./final
+        cd final/
         make run
         make fill-db
-        cd ..
         '''
+      }
+    }
+}
